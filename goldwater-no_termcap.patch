@@ -1,0 +1,11 @@
+--- admin/Makefile.in~	Wed Mar 26 20:32:00 2003
++++ admin/Makefile.in	Tue Sep  9 02:04:38 2003
+@@ -27,7 +27,7 @@
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE -D_POSIX_SOURCE -c $(ALLINC)
+ 
+-LFLAG   = -L../gwlib -L@PXLBASE@/lib -L/lib -lgwtx -lpxtra -lreadline -ltermcap -ldl 
++LFLAG   = -L../gwlib -L@PXLBASE@/lib -L/lib -lgwtx -lpxtra -lreadline -ldl 
+ 
+ OBJS = $(addprefix $(OBJ)/,$(OBJF))
+ 
