@@ -9,12 +9,15 @@ Group:		Applications
 Source0:	http://www.nfluid.com/download/src/%{name}-%{version}.tgz
 # Source0-md5:	e67198137b956e216255df4908ecc4e3
 Patch0:		%{name}-no_termcap.patch
+Patch1:		%{name}-build.patch
+Patch2:		%{name}-soname.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	e2fsprogs-devel
 BuildRequires:	expat-devel
+BuildRequires:	libuuid-devel
 BuildRequires:	phlib-devel >= 1.17
 BuildRequires:	readline-devel >= 4.2
+Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,15 +35,15 @@ uruchamianie w odizolowanym ¶rodowisku (sandboxing) oraz ró¿ne warstwy
 bezpieczeñstwa.
 
 %package libs
-Summary:	Messaging Middleware - libraries
-Summary(pl):	Messaging Middleware - biblioteki
+Summary:	Goldwater Messaging Middleware - libraries
+Summary(pl):	Goldwater Messaging Middleware - biblioteki
 Group:		Libraries
 
 %description libs
-Messaging Middleware - Libraries.
+Goldwater Messaging Middleware - Libraries.
 
 %description libs -l pl
-Messaging Middleware - Biblioteki.
+Goldwater Messaging Middleware - Biblioteki.
 
 %package devel
 Summary:	Goldwater Messaging Middleware - development files
@@ -70,12 +73,15 @@ Goldwater Messaging Middleware - statyczne biblioteki.
 
 %prep
 %setup -q
-%patch0
+%patch0 -p0
+%patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
 %{__autoconf}
-%configure
+%configure \
+	cflags=our
 %{__make}
 
 %install
@@ -83,8 +89,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -93,12 +103,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a.*
+%{_libdir}/lib*.a
