@@ -1,0 +1,72 @@
+--- goldwater-0.3.4/gwlib/Makefile.in.orig	Mon Mar 24 23:11:44 2003
++++ goldwater-0.3.4/gwlib/Makefile.in	Tue Oct 14 11:31:44 2003
+@@ -112,17 +112,23 @@
+ $(GWLIBSO): $(OBJS) 
+ 	@echo Creating shared library $(GWLIBSO)
+ 	@rm -f $@
+-	$(LD) -shared -noinhibit-exec -o$@ $(OBJS) -L$(PXLIBDIR) -lpxtra @LIBS@
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra @LIBS@
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+ $(BSLIBSO): $(OBJS) 
+ 	@echo Creating shared library $(BSLIBSO)
+ 	@rm -f $@
+-	$(LD) -shared -noinhibit-exec -o$@ $(OBJSBS) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSBS) -L$(PXLIBDIR) -lpxtra
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+ $(DOMLIBSO): $(OBJS) 
+ 	@echo Creating shared library $(DOMLIBSO)
+ 	@rm -f $@
+-	$(LD) -shared -noinhibit-exec -o$@ $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+ $(OBJ)/%.o: %.c $(HEAD)
+ 	$(CC) $(CFLAGS) -D_GWTX_LIB_BUILD -o$@ $<
+@@ -130,12 +136,12 @@
+ install: $(GWLIB)
+ 	@echo "Installing Goldwater Libraries..."
+ 	@../mkinstalldirs $(i_libdir) $(MINC)
+-	@../install-lib $(GWLIB) $(GWLIB) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(BSLIB) $(BSLIB) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(DOMLIB) $(DOMLIB) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(GWLIBSO) $(GWLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(BSLIBSO) $(BSLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(DOMLIBSO) $(DOMLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
++	@install $(GWLIB) $(i_libdir)/$(GWLIB)
++	@install $(BSLIB) $(i_libdir)/$(BSLIB)
++	@install $(DOMLIB) $(i_libdir)/$(DOMLIB)
++	@../install-lib $(GWLIBSO).$(VER_MAJOR).$(VER_MINOR) $(GWLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
++	@../install-lib $(BSLIBSO).$(VER_MAJOR).$(VER_MINOR) $(BSLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
++	@../install-lib $(DOMLIBSO).$(VER_MAJOR).$(VER_MINOR) $(DOMLIBSO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+ 	@../install-head . $(MINC) $(HEADF)
+ 
+ clean:
+--- goldwater-0.3.4/netengine/Makefile.in.orig	Mon Mar 24 23:11:44 2003
++++ goldwater-0.3.4/netengine/Makefile.in	Tue Oct 14 11:33:34 2003
+@@ -57,7 +57,9 @@
+ $(CSENGINESO): $(OBJS) 
+ 	@echo Creating shared library $(CSENGINESO)
+ 	@rm -f $@
+-	$(LD) -shared -noinhibit-exec -o$@ $(OBJS) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
++	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+ $(OBJ)/%.o: %.c $(HEAD)
+ 	$(CC) $(CFLAGS) -o$@ $<
+@@ -65,8 +67,8 @@
+ install: $(CSENGINE) $(CSENGINESO)
+ 	@echo "Installing Goldwater Network Engine Libraries..."
+ 	@../mkinstalldirs $(i_libdir) $(MINC)
+-	@../install-lib $(CSENGINE)   $(CSENGINE) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+-	@../install-lib $(CSENGINESO) $(CSENGINESO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
++	@install $(CSENGINE) $(i_libdir)/$(CSENGINE)
++	@../install-lib $(CSENGINESO).$(VER_MAJOR).$(VER_MINOR) $(CSENGINESO) $(i_libdir) $(VER_MAJOR) $(VER_MINOR)
+ 	@../install-head . $(MINC) $(HEADF)
+ 
+ clean:
