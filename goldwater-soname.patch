@@ -4,7 +4,7 @@
  $(GWLIBSO): $(OBJS) 
  	@echo Creating shared library $(GWLIBSO)
  	@rm -f $@
--	$(LD) -shared -noinhibit-exec -o$@ $(OBJS) -L$(PXLIBDIR) -lpxtra @LIBS@
+-	$(SHLD) -o $@ $(OBJS) -L$(PXLIBDIR) -lpxtra @LIBS@
 +	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra @LIBS@
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
@@ -12,7 +12,7 @@
  $(BSLIBSO): $(OBJS) 
  	@echo Creating shared library $(BSLIBSO)
  	@rm -f $@
--	$(LD) -shared -noinhibit-exec -o$@ $(OBJSBS) -L$(PXLIBDIR) -lpxtra
+-	$(SHLD) -o $@ $(OBJSBS) -L$(PXLIBDIR) -lpxtra
 +	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSBS) -L$(PXLIBDIR) -lpxtra
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
@@ -20,7 +20,7 @@
  $(DOMLIBSO): $(OBJS) 
  	@echo Creating shared library $(DOMLIBSO)
  	@rm -f $@
--	$(LD) -shared -noinhibit-exec -o$@ $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
+-	$(SHLD) -o $@ $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
 +	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
@@ -52,7 +52,7 @@
  $(CSENGINESO): $(OBJS) 
  	@echo Creating shared library $(CSENGINESO)
  	@rm -f $@
--	$(LD) -shared -noinhibit-exec -o$@ $(OBJS) -L$(PXLIBDIR) -lpxtra
+-	$(SHLD) -o $@ $(OBJS) -L$(PXLIBDIR) -lpxtra
 +	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
 +	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
