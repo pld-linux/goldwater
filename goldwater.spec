@@ -1,13 +1,13 @@
 Summary:	Messaging Middleware
 Summary(pl):	Oprogramowanie po¶rednicz±ce w komunikacji
 Name:		goldwater
-Version:	0.3.4
-Release:	0.2
+Version:	1.4.0
+Release:	1
 License:	GPL
 Vendor:		netFluid Technology Limited
 Group:		Applications
 Source0:	http://www.nfluid.com/download/src/%{name}-%{version}.tgz
-# Source0-md5:	e67198137b956e216255df4908ecc4e3
+# Source0-md5:	c9b80c0983603782f4d2f0d352c0520c
 Patch0:		%{name}-no_termcap.patch
 Patch1:		%{name}-build.patch
 Patch2:		%{name}-soname.patch
@@ -73,7 +73,7 @@ Goldwater Messaging Middleware - statyczne biblioteki.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
@@ -104,6 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/Goldwater.dll
 
 %files devel
 %defattr(644,root,root,755)
