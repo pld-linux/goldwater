@@ -3,6 +3,7 @@ Name:		goldwater
 Version:	0.3.4
 Release:	0.1
 Source0:	http://www.nfluid.com/download/src/%{name}-%{version}.tgz
+# Source0-md5:	e67198137b956e216255df4908ecc4e3
 Patch0:		%{name}-no_termcap.patch
 License:	GPL
 Vendor:		netFluid Technology Limited
