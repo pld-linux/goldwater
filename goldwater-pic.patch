@@ -1,0 +1,82 @@
+--- goldwater-1.4.0/admin/Makefile.in.orig	2003-12-05 19:27:36.000000000 +0000
++++ goldwater-1.4.0/admin/Makefile.in	2003-12-05 20:53:08.000000000 +0000
+@@ -29,6 +29,7 @@
+ ../dombridge/version.h \
+ ../asyncmgr/version.h
+ 
++CC = @CC@
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -DBUILDTARGET='"@BUILDTARGET@"' -c $(ALLINC)
+ 
+--- goldwater-1.4.0/gwlib/Makefile.in.orig	2003-12-05 19:27:36.000000000 +0000
++++ goldwater-1.4.0/gwlib/Makefile.in	2003-12-05 20:48:59.000000000 +0000
+@@ -31,7 +31,7 @@
+ 
+ # Uses _BSD_SOURCE to get some definitions
+ #
+-CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
++CFLAGS = @CFLAGS@ -fPIC -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ #-D_XOPEN_SOURCE -D_BSD_SOURCE 
+ 
+ OBJF  = \
+--- goldwater-1.4.0/tools/Makefile.in.orig	2003-05-22 12:02:59.000000000 +0000
++++ goldwater-1.4.0/tools/Makefile.in	2003-12-05 20:53:34.000000000 +0000
+@@ -14,6 +14,7 @@
+ compileconf.o \
+ conftree.o
+ 
++CC = @CC@
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include -I@EXPATBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC) ${DEBUG}
+ 
+--- goldwater-1.4.0/netengine/Makefile.in.orig	2003-12-05 19:27:36.000000000 +0000
++++ goldwater-1.4.0/netengine/Makefile.in	2003-12-05 20:49:39.000000000 +0000
+@@ -24,7 +24,7 @@
+ 
+ # Uses _BSD_SOURCE to get some definitions
+ #
+-CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
++CFLAGS = @CFLAGS@ -fPIC -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+ 
+ OBJF  = \
+--- goldwater-1.4.0/netserver/Makefile.in.orig	2003-04-22 10:50:35.000000000 +0000
++++ goldwater-1.4.0/netserver/Makefile.in	2003-12-05 20:54:33.000000000 +0000
+@@ -14,6 +14,7 @@
+ nsreply.o \
+ nserver.o
+ 
++CC = @CC@
+ ALLINC  = -I. -I../gwlib -I../netengine -I../dombridge -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+--- goldwater-1.4.0/guardian/Makefile.in.orig	2003-04-22 10:50:35.000000000 +0000
++++ goldwater-1.4.0/guardian/Makefile.in	2003-12-05 20:52:43.000000000 +0000
+@@ -14,6 +14,7 @@
+ gwipc.o 
+ 
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include
++CC = @CC@
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+ LFLAG   = -L../gwlib -L@PXLBASE@/lib -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@
+--- goldwater-1.4.0/dombridge/Makefile.in.orig	2003-04-22 10:50:35.000000000 +0000
++++ goldwater-1.4.0/dombridge/Makefile.in	2003-12-05 20:54:05.000000000 +0000
+@@ -14,6 +14,7 @@
+ dbctrl.o \
+ dbcom.o
+ 
++CC = @CC@
+ ALLINC  = -I. -I../gwlib -I../netengine -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+--- goldwater-1.4.0/examples/Makefile.in.orig	2003-04-22 10:50:35.000000000 +0000
++++ goldwater-1.4.0/examples/Makefile.in	2003-12-05 20:55:39.000000000 +0000
+@@ -9,6 +9,7 @@
+ 
+ OBJF=tserver.o gwtest.o
+ 
++CC = @CC@
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include
+ CFLAGS  = @CFLAGS@ -D_SVID_SOURCE -c $(ALLINC)  
+ 
