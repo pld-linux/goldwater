@@ -2,7 +2,7 @@ Summary:	Messaging Middleware
 Summary(pl):	Oprogramowanie po¶rednicz±ce w komunikacji
 Name:		goldwater
 Version:	1.4.0
-Release:	2
+Release:	3
 License:	GPL
 Vendor:		netFluid Technology Limited
 Group:		Applications
