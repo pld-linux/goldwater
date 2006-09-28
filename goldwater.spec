@@ -4,7 +4,6 @@ Name:		goldwater
 Version:	1.4.0
 Release:	3
 License:	GPL
-Vendor:		netFluid Technology Limited
 Group:		Applications
 Source0:	http://www.nfluid.com/download/src/%{name}-%{version}.tgz
 # Source0-md5:	c9b80c0983603782f4d2f0d352c0520c
@@ -18,7 +17,7 @@ BuildRequires:	expat-devel
 BuildRequires:	libuuid-devel
 BuildRequires:	phlib-devel >= 1.17
 BuildRequires:	readline-devel >= 4.2
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,7 +49,7 @@ Goldwater Messaging Middleware - Biblioteki.
 Summary:	Goldwater Messaging Middleware - development files
 Summary(pl):	Goldwater Messaging Middleware - pliki dla programistów
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	phlib-devel >= 1.17
 
 %description devel
@@ -63,7 +62,7 @@ Goldwater Messaging Middleware - pliki dla programistów.
 Summary:	Goldwater Messaging Middleware - static libraries
 Summary(pl):	Goldwater Messaging Middleware - statyczne biblioteki
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 Requires:	phlib-static >= 1.17
 
 %description static
