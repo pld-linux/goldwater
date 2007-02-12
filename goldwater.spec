@@ -1,5 +1,5 @@
 Summary:	Messaging Middleware
-Summary(pl):	Oprogramowanie po¶rednicz±ce w komunikacji
+Summary(pl.UTF-8):   Oprogramowanie poÅ›redniczÄ…ce w komunikacji
 Name:		goldwater
 Version:	1.4.0
 Release:	3
@@ -26,28 +26,28 @@ and automatic fail-over, Goldwater provides high-availability,
 connection pooling, resource control, load balancing, process
 management, sandboxing and various security layers.
 
-%description -l pl
-Jako nieod³±cznie dystrybuowane oprogramowanie po¶rednicz±ce natywnie
-wspieraj±ce klastrowanie i automatyczne odtwarzanie po awarii,
-Goldwater zapewnia wysok± dostêpno¶æ, gospodarowanie po³±czeniami,
-kontrolê zasobów, rozk³adanie obci±¿enia, zarz±dzanie procesami,
-uruchamianie w odizolowanym ¶rodowisku (sandboxing) oraz ró¿ne warstwy
-bezpieczeñstwa.
+%description -l pl.UTF-8
+Jako nieodÅ‚Ä…cznie dystrybuowane oprogramowanie poÅ›redniczÄ…ce natywnie
+wspierajÄ…ce klastrowanie i automatyczne odtwarzanie po awarii,
+Goldwater zapewnia wysokÄ… dostÄ™pnoÅ›Ä‡, gospodarowanie poÅ‚Ä…czeniami,
+kontrolÄ™ zasobÃ³w, rozkÅ‚adanie obciÄ…Å¼enia, zarzÄ…dzanie procesami,
+uruchamianie w odizolowanym Å›rodowisku (sandboxing) oraz rÃ³Å¼ne warstwy
+bezpieczeÅ„stwa.
 
 %package libs
 Summary:	Goldwater Messaging Middleware - libraries
-Summary(pl):	Goldwater Messaging Middleware - biblioteki
+Summary(pl.UTF-8):   Goldwater Messaging Middleware - biblioteki
 Group:		Libraries
 
 %description libs
 Goldwater Messaging Middleware - Libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Goldwater Messaging Middleware - Biblioteki.
 
 %package devel
 Summary:	Goldwater Messaging Middleware - development files
-Summary(pl):	Goldwater Messaging Middleware - pliki dla programistów
+Summary(pl.UTF-8):   Goldwater Messaging Middleware - pliki dla programistÃ³w
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	phlib-devel >= 1.17
@@ -55,12 +55,12 @@ Requires:	phlib-devel >= 1.17
 %description devel
 Goldwater Messaging Middleware - development files.
 
-%description devel -l pl
-Goldwater Messaging Middleware - pliki dla programistów.
+%description devel -l pl.UTF-8
+Goldwater Messaging Middleware - pliki dla programistÃ³w.
 
 %package static
 Summary:	Goldwater Messaging Middleware - static libraries
-Summary(pl):	Goldwater Messaging Middleware - statyczne biblioteki
+Summary(pl.UTF-8):   Goldwater Messaging Middleware - statyczne biblioteki
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	phlib-static >= 1.17
@@ -68,7 +68,7 @@ Requires:	phlib-static >= 1.17
 %description static
 Goldwater Messaging Middleware - static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Goldwater Messaging Middleware - statyczne biblioteki.
 
 %prep
