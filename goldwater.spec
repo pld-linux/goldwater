@@ -1,5 +1,5 @@
 Summary:	Messaging Middleware
-Summary(pl.UTF-8):   Oprogramowanie pośredniczące w komunikacji
+Summary(pl.UTF-8):	Oprogramowanie pośredniczące w komunikacji
 Name:		goldwater
 Version:	1.4.0
 Release:	3
@@ -36,7 +36,7 @@ bezpieczeństwa.
 
 %package libs
 Summary:	Goldwater Messaging Middleware - libraries
-Summary(pl.UTF-8):   Goldwater Messaging Middleware - biblioteki
+Summary(pl.UTF-8):	Goldwater Messaging Middleware - biblioteki
 Group:		Libraries
 
 %description libs
@@ -47,7 +47,7 @@ Goldwater Messaging Middleware - Biblioteki.
 
 %package devel
 Summary:	Goldwater Messaging Middleware - development files
-Summary(pl.UTF-8):   Goldwater Messaging Middleware - pliki dla programistów
+Summary(pl.UTF-8):	Goldwater Messaging Middleware - pliki dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	phlib-devel >= 1.17
@@ -60,7 +60,7 @@ Goldwater Messaging Middleware - pliki dla programistów.
 
 %package static
 Summary:	Goldwater Messaging Middleware - static libraries
-Summary(pl.UTF-8):   Goldwater Messaging Middleware - statyczne biblioteki
+Summary(pl.UTF-8):	Goldwater Messaging Middleware - statyczne biblioteki
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	phlib-static >= 1.17
