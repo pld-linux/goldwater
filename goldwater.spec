@@ -2,7 +2,7 @@ Summary:	Messaging Middleware
 Summary(pl.UTF-8):	Oprogramowanie pośredniczące w komunikacji
 Name:		goldwater
 Version:	1.4.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications
 Source0:	http://www.nfluid.com/download/src/%{name}-%{version}.tgz
@@ -11,6 +11,8 @@ Patch0:		%{name}-no_termcap.patch
 Patch1:		%{name}-build.patch
 Patch2:		%{name}-soname.patch
 Patch3:		%{name}-pic.patch
+Patch4:		%{name}-make.patch
+Patch5:		%{name}-lvalue.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	expat-devel
@@ -77,6 +79,8 @@ Goldwater Messaging Middleware - statyczne biblioteki.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
