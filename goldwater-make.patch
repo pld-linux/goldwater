@@ -1,0 +1,72 @@
+--- goldwater-1.4.0/Makefile.in.orgi	2003-10-20 21:37:46.000000000 +0200
++++ goldwater-1.4.0/Makefile.in	2007-09-06 02:01:55.000000000 +0200
+@@ -13,7 +13,7 @@
+ binaries: directories
+ 	@( for d in ${DIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE); \
++		$(MAKE) || exit 1; \
+ 		echo;  \
+ 	done; )
+ 	@( if [ '$(withperl)' == 'yes' ];  \
+@@ -23,7 +23,7 @@
+         export PXLBASE=@PXLBASE@; \
+ 		perl Makefile.PL; \
+ 		./build.sh; \
+-		$(MAKE); \
++		$(MAKE) || exit 1; \
+ 		echo;  \
+ 	  done; \
+      fi; )
+@@ -38,7 +38,7 @@
+ install:  directories
+ 	@( for d in ${DIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) DESTDIR=$(DESTDIR) install; \
++		$(MAKE) DESTDIR=$(DESTDIR) install || exit 1; \
+ 		echo;  \
+ 	done; )
+ 
+@@ -47,7 +47,7 @@
+ 	then \
+ 	  for d in ${PERLDIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) install; \
++		$(MAKE) install || exit 1; \
+ 		echo;  \
+ 	  done; \
+ 	else  \
+@@ -62,14 +62,14 @@
+ clean:
+ 	@( for d in ${DIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) clean ; \
++		$(MAKE) clean  || exit 1; \
+ 		echo;  \
+ 	done; )
+ 	@( if [ '$(withperl)' == 'yes' ];  \
+ 	then \
+ 	  for d in ${PERLDIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) clean; \
++		$(MAKE) clean || exit 1; \
+ 		echo;  \
+ 	  done; \
+     fi; )
+@@ -77,14 +77,14 @@
+ distclean: directories
+ 	@( for d in ${DIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) distclean ; \
++		$(MAKE) distclean  || exit 1; \
+ 		echo;  \
+ 	done; )
+ 	@( if [ '$(withperl)' == 'yes' ];  \
+ 	then \
+ 	  for d in ${PERLDIRS}; do \
+ 		cd $(MYDIR)/$${d}; \
+-		$(MAKE) distclean; \
++		$(MAKE) distclean || exit 1; \
+ 		echo;  \
+ 	  done; \
+     fi; )
