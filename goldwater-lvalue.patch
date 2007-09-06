@@ -1,0 +1,11 @@
+--- goldwater-1.4.0/tools/conftree.c~	2007-09-06 02:04:39.000000000 +0200
++++ goldwater-1.4.0/tools/conftree.c	2007-09-06 02:05:46.000000000 +0200
+@@ -526,7 +526,7 @@
+     os = BOUNDARY - (((long)memlist) % BOUNDARY);
+ 
+     tree_start_offset += os;
+-    (long)memlist     += os;
++    memlist     += os;
+   }
+ 
+   /* The first time through we MUST be aligned properly, if we're not then
