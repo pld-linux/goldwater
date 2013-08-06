@@ -1,0 +1,79 @@
+--- goldwater-1.4.0/guardian/Makefile.in~	2013-08-06 17:47:27.742543216 +0200
++++ goldwater-1.4.0/guardian/Makefile.in	2013-08-06 17:48:46.200101141 +0200
+@@ -17,7 +17,7 @@
+ CC = @CC@
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+-LFLAG   = -L../gwlib -L@PXLBASE@/lib -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@
++LFLAG   = -L../gwlib -L@PXLBASE@/lib -lgwtx -lgwdm -lpxtra -luuid @LOCAL_LDFLAGS@
+ 
+ OBJS = $(addprefix $(OBJ)/,$(OBJF))
+ 
+--- goldwater-1.4.0/admin/Makefile.in~	2013-08-06 17:47:27.742543216 +0200
++++ goldwater-1.4.0/admin/Makefile.in	2013-08-06 17:49:40.337382411 +0200
+@@ -33,7 +33,7 @@
+ ALLINC  = -I. -I.. -I../gwlib -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -DBUILDTARGET='"@BUILDTARGET@"' -c $(ALLINC)
+ 
+-LFLAG   = -L../gwlib -L@PXLBASE@/lib -L/lib @LOCAL_LDFLAGS@ -lgwtx -lpxtra -lreadline
++LFLAG   = -L../gwlib -L@PXLBASE@/lib -L/lib @LOCAL_LDFLAGS@ -lgwtx -lpxtra -lreadline -luuid
+ 
+ OBJS = $(addprefix $(OBJ)/,$(OBJF))
+ 
+--- goldwater-1.4.0/dombridge/Makefile.in~	2013-08-06 17:47:27.742543216 +0200
++++ goldwater-1.4.0/dombridge/Makefile.in	2013-08-06 17:50:05.414333662 +0200
+@@ -18,7 +18,7 @@
+ ALLINC  = -I. -I../gwlib -I../netengine -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+-LFLAG   = -L../gwlib -L@PXLBASE@/lib -L../netengine -lgwneng -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@
++LFLAG   = -L../gwlib -L@PXLBASE@/lib -L../netengine -lgwneng -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@ -luuid
+ 
+ OBJS = $(addprefix $(OBJ)/,$(OBJF))
+ 
+--- goldwater-1.4.0/netserver/Makefile.in~	2013-08-06 17:47:27.742543216 +0200
++++ goldwater-1.4.0/netserver/Makefile.in	2013-08-06 17:50:55.494901803 +0200
+@@ -18,7 +18,7 @@
+ ALLINC  = -I. -I../gwlib -I../netengine -I../dombridge -I@PXLBASE@/include
+ CFLAGS = @CFLAGS@ -D_SVID_SOURCE @LOCAL_CFLAGS@ -c $(ALLINC)
+ 
+-LFLAG   = -L../gwlib -L../netengine -L@PXLBASE@/lib -lgwneng -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@
++LFLAG   = -L../gwlib -L../netengine -L@PXLBASE@/lib -lgwneng -lgwtx -lgwdm -lpxtra @LOCAL_LDFLAGS@ -luuid
+ 
+ OBJS = $(addprefix $(OBJ)/,$(OBJF))
+ 
+--- goldwater-1.4.0/gwlib/Makefile.in~	2013-08-06 17:52:37.536058614 +0200
++++ goldwater-1.4.0/gwlib/Makefile.in	2013-08-06 17:54:58.234318616 +0200
+@@ -117,17 +117,17 @@
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+-$(BSLIBSO): $(OBJS) 
++$(BSLIBSO): $(OBJS) $(GWLIBSO)
+ 	@echo Creating shared library $(BSLIBSO)
+ 	@rm -f $@
+-	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSBS) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSBS) -L$(PXLIBDIR) -lpxtra -L./ -lgwtx
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+-$(DOMLIBSO): $(OBJS) 
++$(DOMLIBSO): $(OBJS) $(GWLIBSO)
+ 	@echo Creating shared library $(DOMLIBSO)
+ 	@rm -f $@
+-	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSDOM) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJSDOM) -L$(PXLIBDIR) -lpxtra -L./ -lgwtx
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
+--- goldwater-1.4.0/netengine/Makefile.in~	2013-08-06 17:56:41.968825447 +0200
++++ goldwater-1.4.0/netengine/Makefile.in	2013-08-06 17:58:36.480119670 +0200
+@@ -59,7 +59,7 @@
+ $(CSENGINESO): $(OBJS) 
+ 	@echo Creating shared library $(CSENGINESO)
+ 	@rm -f $@
+-	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra
++	$(CC) -shared -o$@.$(VER_MAJOR).$(VER_MINOR) -Wl,-soname=$@.$(VER_MAJOR) $(OBJS) -L$(PXLIBDIR) -lpxtra  -L../gwlib -lgwtx
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@.$(VER_MAJOR)
+ 	ln -sf $@.$(VER_MAJOR).$(VER_MINOR) $@
+ 
