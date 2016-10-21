@@ -1,0 +1,44 @@
+--- goldwater-1.4.0/netengine/pxlapi.h~	2003-03-29 13:21:11.000000000 +0100
++++ goldwater-1.4.0/netengine/pxlapi.h	2016-10-21 21:58:54.134124582 +0200
+@@ -42,7 +42,7 @@
+ void api_event_init();
+ void api_write_init( int block_size );
+ int  api_event_deinit();
+-__inline__ int  api_events_pending();
++int  api_events_pending();
+ 
+ void api_defcon_init( NetService *, NetworkConnectionData * );
+ 
+--- goldwater-1.4.0/netengine/xlapi.c~	2016-10-21 22:00:03.000000000 +0200
++++ goldwater-1.4.0/netengine/xlapi.c	2016-10-21 22:02:07.648921958 +0200
+@@ -123,7 +123,7 @@
+ /*
+  * Returns the number of events sitting in queue FAST INLINE VERSION
+  */
+-__inline__ int
++int
+ api_events_pending()
+ {
+   return EVT_MAX - xl_List_get_size( evb_pool );
+--- goldwater-1.4.0/gwlib/gwservice.c~	2003-04-10 18:18:25.000000000 +0200
++++ goldwater-1.4.0/gwlib/gwservice.c	2016-10-21 22:02:50.124763410 +0200
+@@ -188,7 +188,7 @@
+  * Registers service with the calling servers Request Queue, but against
+  * the supplied domain id
+  */
+-__inline__ int
++int
+ __gw_add_service_dom( const char *service, const char *function, int domid )
+ {
+   long pos        = 0;
+--- goldwater-1.4.0/gwlib/gwservice.h~	2003-03-29 13:21:11.000000000 +0100
++++ goldwater-1.4.0/gwlib/gwservice.h	2016-10-21 22:03:05.634511019 +0200
+@@ -60,7 +60,7 @@
+ RetValue  __gw_remove_services ( long, long, long, SHMLIST * );
+ RetValue  __gw_add_service( long, long, long, long, SHMLIST *, const char *, const char *, long *, ServiceFlags );
+ 
+-__inline__ int __gw_add_service_dom( const char *, const char *, int );
++int __gw_add_service_dom( const char *, const char *, int );
+ 
+ /* ------------------------------------------------------------------------- */
+ /* end */
